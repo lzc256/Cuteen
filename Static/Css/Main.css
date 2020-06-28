@@ -242,7 +242,7 @@ html::-webkit-scrollbar-thumb:hover {
 	color: var(--hei);
 }
 
-.bgbai, .cardstyle, .haveimg .nav-content li:hover:not(.dropdown) a::before, .nav, .mybox, .All_Pagination li a, .Link_Box li {
+.bgbai, .cardstyle, .haveimg .nav-content li:hover:not(.dropdown) a::before, .mybox, .All_Pagination li a, .Link_Box li {
 	background-color: var(--bai)
 }
 
@@ -1620,12 +1620,12 @@ h2:focus, h3:focus, h4:focus, h5:focus {
   }
   /*dark mode*/
   .DarkMode h1,.DarkMode h2,.DarkMode h3 ,.DarkMode h4,.DarkMode h5 ,.DarkMode h6,
-  .DarkMode strong,
+  .DarkMode strong,.DarkMode table th,
   .DarkMode html,.DarkMode body,.DarkMode  p,.DarkMode  ol,
   .DarkMode  ul,.DarkMode  li,.DarkMode  dl, .DarkMode dt,.DarkMode  dd, .DarkMode blockquote,
   .DarkMode  figure,.DarkMode  fieldset,.DarkMode  legend,.DarkMode textarea,.DarkMode  pre,.DarkMode  iframe,
   .DarkMode .h1,.DarkMode .h2,.DarkMode .h3 ,.DarkMode .h4,.DarkMode .h5 ,.DarkMode .h6,
-  .DarkMode .bold,
+  .DarkMode .bold,.DarkMode .input,
 .DarkMode a,.DarkMode #MENU::before,.DarkMode .mobile-nav-open .haveimg.nobg i,.DarkMode .mobile-nav-open .haveimg.nobg .sitetitle a,
 .DarkMode .Footer_content p,.DarkMode .haveimg.hasbg .nav-content li a,
 .DarkMode .card-title,.DarkMode .card-des,.DarkMode .card-info>.info *,
@@ -1637,12 +1637,12 @@ h2:focus, h3:focus, h4:focus, h5:focus {
 	color: #3e3e3e;;
 }
 .DarkMode .Link_Box li,
-  .DarkMode body,.DarkMode .banquan,.DarkMode hr,.DarkMode textarea,.DarkMode .All_Pagination li a,
-  .DarkMode .tabs-wrap label,.DarkMode .is-active-link::before,.DarkMode #nav
+  .DarkMode body,.DarkMode .banquan,.DarkMode hr,.DarkMode textarea,.DarkMode .All_Pagination li a,.DarkMode .input,
+  .DarkMode .tabs-wrap label,.DarkMode .is-active-link::before,.DarkMode #nav,.DarkMode .duta tbody tr
   {
 	  background-color:#121212;
   }
-  .DarkMode hr,.DarkMode .OwO .OwO-body .OwO-items .OwO-item,.DarkMode blockquote,
+  .DarkMode hr,.DarkMode .OwO .OwO-body .OwO-items .OwO-item,.DarkMode blockquote,.DarkMode .duta thead tr,.DarkMode .duta tfoot tr,
   .DarkMode .OwO .OwO-body .OwO-bar .OwO-packages .OwO-package-active,.DarkMode .dropblur,.DarkMode darkb-text,
   .DarkMode .tabs-item.active,  .DarkMode .tabs-content,.DarkMode .tabs-wrap  ,.DarkMode .mobfl.active,.DarkMode code,.DarkMode pre
   {background-color:  #3e3e3e;}
@@ -1667,4 +1667,7 @@ h2:focus, h3:focus, h4:focus, h5:focus {
 }
 .DarkMode code{
 	color: #ff7e7e;
+}
+.DarkMode .duta th,.DarkMode .duta td{
+	border: 1px solid #909090;
 }
