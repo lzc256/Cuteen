@@ -1,3 +1,4 @@
+console.log(' %c Theme Cuteen %c https://blog.zwying.com/ ', 'color: #fff; background: #2dce89; padding:5px;', 'background: #1c2b36; padding:5px;');
 
 var CuteenFunc = {
 	sidebar: function () {
@@ -7,16 +8,6 @@ var CuteenFunc = {
 				prevElement: jQuery('.sidebar-1'),
 				distanceToTop: 60
 			});
-		}
-	},
-	codeline: function () {
-		if (typeof Prism !== 'undefined') {
-			var pres = document.getElementsByTagName('pre');
-			for (var i = 0; i < pres.length; i++) {
-				if (pres[i].getElementsByTagName('code').length > 0)
-					pres[i].className = 'line-numbers';
-			}
-			Prism.highlightAll(true, null);
 		}
 	},
 	owo: function () {
@@ -298,16 +289,127 @@ var CuteenFunc = {
 			$("#mobar").toggleClass("leftopen");
 			$("body").toggleClass("mobile-nav-open")
 		});
-	}
+	},
+	randomString: function (len) {
+		len = len || 32;
+		let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		let res = "";
+		for (let i = 0; i < len; i++) {
+			res += chars.charAt(Math.floor(Math.random() * chars.length));
+		}
+		return res;
+	},
+
+	getCodeFromBlock: function (block) {
+		var codeOfBlocks = {};
+		if (codeOfBlocks[block.id] != undefined) {
+			return codeOfBlocks[block.id];
+		}
+		let lines = $(".hljs-ln-code", block);
+		let res = "";
+		for (let i = 0; i < lines.length - 1; i++) {
+			res += lines[i].innerText;
+			res += "\n";
+		}
+		res += lines[lines.length - 1].innerText;
+		codeOfBlocks[block.id] = res;
+		return res;
+	},
+	highlightJsRender: function () {
+		if (typeof (hljs) == "undefined") {
+			return;
+		}
+		$(".duta pre code").each(function (index, block) {
+			if ($(block).hasClass("no-hljs")) {
+				return;
+			}
+			$(block).parent().attr("id", CuteenFunc.randomString());
+			hljs.highlightBlock(block);
+			hljs.lineNumbersBlock(block, { singleLine: true });
+			$(block).parent().addClass("hljs-codeblock");
+			$(block).attr("hljs-codeblock-inner", "");
+			let copyBtnID = "copy_btn_" + CuteenFunc.randomString();
+			$(block).parent().append(`<div class="hljs-control hljs-title">
+					<div class="hljs-control-btn hljs-control-toggle-linenumber">
+						<i class="fa fa-list"></i>
+					</div>
+					<div class="hljs-control-btn hljs-control-toggle-break-line">
+						<i class="fa fa-align-left"></i>
+					</div>
+					<div class="hljs-control-btn hljs-control-copy" id=` + copyBtnID + `>
+						<i class="fa fa-clipboard"></i>
+					</div>
+					<div class="hljs-control-btn hljs-control-fullscreen">
+						<i class="fa fa-arrows-alt"></i>
+					</div>
+				</div>`);
+			let clipboard = new ClipboardJS("#" + copyBtnID, {
+				text: function (trigger) {
+					return CuteenFunc.getCodeFromBlock($(block).parent()[0]);
+				}
+			});
+			clipboard.on('success', function (e) {
+				iziToast.show({
+					title: '复制成功',
+					message: "代码已复制到剪贴板",
+					class: 'noshadow',
+					position: 'topRight',
+					backgroundColor: 'var(--mlv)',
+					titleColor: '#ffffff',
+					messageColor: '#ffffff',
+					iconColor: '#ffffff',
+					progressBarColor: '#ffffff',
+					icon: 'fa fa-check',
+					timeout: 5000
+				});
+			});
+			clipboard.on('error', function (e) {
+				iziToast.show({
+					title: '复制失败',
+					message: "请手动复制到剪贴板",
+					class: 'noshadow',
+					position: 'topRight',
+					backgroundColor: '#f5365c',
+					titleColor: '#ffffff',
+					messageColor: '#ffffff',
+					iconColor: '#ffffff',
+					progressBarColor: '#ffffff',
+					icon: 'fa fa-close',
+					timeout: 5000
+				});
+			});
+		});
+	},
+	CodeToolBar: function () {
+		$(document).on("click", ".hljs-control-fullscreen", function () {
+			let block = $(this).parent().parent();
+			block.toggleClass("hljs-codeblock-fullscreen");
+			if (block.hasClass("hljs-codeblock-fullscreen")) {
+				$("html").addClass("noscroll codeblock-fullscreen");
+			} else {
+				$("html").removeClass("noscroll codeblock-fullscreen");
+			}
+		});
+		$(document).on("click", ".hljs-control-toggle-break-line", function () {
+			let block = $(this).parent().parent();
+			block.toggleClass("hljs-break-line");
+		});
+		$(document).on("click", ".hljs-control-toggle-linenumber", function () {
+			let block = $(this).parent().parent();
+			block.toggleClass("hljs-hide-linenumber");
+		});
+	},
+
 };
 
 Cuteen = {
 	init: function () {
-		CuteenFunc.SearchModel(); CuteenFunc.sidebar(); CuteenFunc.codeline();
+		CuteenFunc.SearchModel(); CuteenFunc.sidebar(); CuteenFunc.CodeToolBar();
 		CuteenFunc.owo(); CuteenFunc.TopPost(); CuteenFunc.BackTop();
 		CuteenFunc.Toc(); CuteenFunc.NoCopy(); CuteenFunc.NavBgFix();
 		CuteenFunc.AjaxNext(); CuteenFunc.Acc(); CuteenFunc.Tab();
 		CuteenFunc.DarkModeChecked(); CuteenFunc.MobileBarAcc(); CuteenFunc.MobileMenu();
+		CuteenFunc.highlightJsRender();
 	}
 };
 
@@ -428,7 +530,6 @@ function AjaxComment() {
 		return false;
 	});
 } AjaxComment()
-
 
 
 
