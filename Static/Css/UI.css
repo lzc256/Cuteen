@@ -96,7 +96,7 @@
     -webkit-transition: .18s ease-out;
 }
 
-.btn.lan:hover, .btn.zi:hover, .btn.lv:hover, .btn.huang:hover, .btn.hong:hover, .btn.fen:hover {
+.btn.lan:hover, .btn.zi:hover, .btn.lv:hover, .btn.huang:hover, .btn.hong:hover {
     color: var(--bai);
 }
 
@@ -404,8 +404,6 @@ rainbow-text, rainbow-text * {
     padding: 0;
     list-style: none;
 }
-
-.accordion-item {}
 
 .open .accordion-thumb {
     color: var(--bai) !important;

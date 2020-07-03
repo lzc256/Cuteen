@@ -1,14 +1,2 @@
-var _PageHeight = document.documentElement.clientHeight,
-	_PageWidth = document.documentElement.clientWidth;
-var _LoadingTop = _PageHeight > 61 ? (_PageHeight - 61) / 2 : 0,
-	_LoadingLeft = _PageWidth > 215 ? (_PageWidth - 215) / 2 : 0;
-var _LoadingHtml = '<div id="loadingDiv" style="position:absolute;left:0;width:100%;height:' + _PageHeight + 'px;top:0;background:#f3f8ff;opacity:1;filter:alpha(opacity=80);z-index:10000;"><div style="position: absolute; cursor1: wait; left: ' + _LoadingLeft + 'px; top:' + _LoadingTop + 'px; width: auto; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; background: #fff url(Image/loading.gif) no-repeat scroll 5px 10px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';">页面加载中，请等待...</div></div>';
-document.write(_LoadingHtml);
-document.onreadystatechange = completeLoading;
 
-function completeLoading() {
-	if (document.readyState == "complete") {
-		var loadingMask = document.getElementById('loadingDiv');
-		loadingMask.parentNode.removeChild(loadingMask);
-	}
-}
+(function($){$.fn.preloader=function(params){var options=$.extend({selector:"#preloader",type:"document",removeType:"fade",fadeDuration:300,delay:0},params);var element=null;function init(){element=$(options.selector)}function run(){switch(options.type){case"document":default:setTimeout(function(){enforceRemove()},options.delay);break}}function enforceRemove(){switch(options.removeType){case"fade":fadeOut();break;case"remove":default:remove();break}}function remove(){return element.remove()}function fadeOut(){return element.fadeOut(options.fadeDuration,afterCallback())}function afterCallback(){return function(){element.remove()}}init();return this.ready(function(){$(this).trigger("preloader:before");run();$(this).trigger("preloader:after")})}}(jQuery));

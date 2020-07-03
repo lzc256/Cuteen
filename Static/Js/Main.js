@@ -3,7 +3,7 @@ console.log(' %c Theme Cuteen %c https://blog.zwying.com/ ', 'color: #fff; backg
 var CuteenFunc = {
 	sidebar: function () {
 		if (0 < $("#sidebar").length) {
-			new SidebarFollow().init({
+			(new SidebarFollow()).init({
 				element: jQuery('.sidebar-2'),
 				prevElement: jQuery('.sidebar-1'),
 				distanceToTop: 60
@@ -143,9 +143,9 @@ var CuteenFunc = {
 		(function () {
 			$(document).on('scroll', function () {
 				if ($(document).scrollTop() <= 60) {
-					$('.nav').addClass('nobg').removeClass('hasbg');
+					$('.nav').addClass('nobg p1').removeClass('hasbg p2');
 				} else {
-					$('.nav').removeClass('nobg').addClass('hasbg');
+					$('.nav').removeClass('nobg p1').addClass('hasbg p2');
 				}
 			});
 		})();
@@ -416,6 +416,9 @@ Cuteen = {
 $(document).ready(function () {
 	Cuteen.init()
 })
+$(window).preloader({	
+	delay: 500
+});	
 
 function Pjaxreload() {
 	Cuteen.init()
@@ -441,8 +444,9 @@ function AjaxComment() {
 			type: $(this).attr('method'),
 			data: commentdata,
 			beforeSend: function () {
-				$('#comment-submit-button').css('display', 'none');
-				$('#commenting').css('display', 'block');
+				//$('#comment-submit-button').css('display', 'none');
+				$("#comment-submit-button").attr("disabled","disabled").text('提交中……');
+				//$('#commenting').css('display', 'block');
 			},
 			error: function () {
 				iziToast.error({
@@ -450,11 +454,11 @@ function AjaxComment() {
 					message: '发生了未知错误，请刷新后重试',
 					position: 'topRight',
 				})
-				$('#commenting').css('display', 'none');
+				//$('#commenting').css('display', 'none');
 				$('#comment-submit-button').css('display', 'none');
 			},
 			success: function (data) {
-				$('#commenting').css('display', 'none');
+				//$('#commenting').css('display', 'none');
 				$('#comment-submit-button').css('display', 'unset');
 				var error = /<title>Error<\/title>/;
 				if (error.test(data)) {
