@@ -46,6 +46,7 @@ var CuteenFunc = {
 		var event = window.event || arguments.callee.caller.arguments[0];
 		if (event.keyCode == 13) {
 			CuteenFunc.startSearch(item);
+			$('#searchbox').iziModal('close')
 		}
 	},
 
@@ -285,10 +286,16 @@ var CuteenFunc = {
 		});
 	},
 	MobileMenu: function () {
-		$('#left-menu').on('click', function () {
-			$("#mobar").toggleClass("leftopen");
-			$("body").toggleClass("mobile-nav-open")
-		});
+		$("#mobar").toggleClass("leftopen");
+		$("body").toggleClass("mobile-nav-open")
+	},
+	MobileCloseBar: function () {
+		if ($('.mobile-nav-open').length > 0) {
+			CuteenFunc.MobileMenu();
+		}
+		if ($('.rightopen').length > 0) {
+			$('body').toggleClass('rightopen');
+		}
 	},
 	randomString: function (len) {
 		len = len || 32;
@@ -408,7 +415,7 @@ Cuteen = {
 		CuteenFunc.owo(); CuteenFunc.TopPost(); CuteenFunc.BackTop();
 		CuteenFunc.Toc(); CuteenFunc.NoCopy(); CuteenFunc.NavBgFix();
 		CuteenFunc.AjaxNext(); CuteenFunc.Acc(); CuteenFunc.Tab();
-		CuteenFunc.DarkModeChecked(); CuteenFunc.MobileBarAcc(); CuteenFunc.MobileMenu();
+		CuteenFunc.DarkModeChecked(); CuteenFunc.MobileBarAcc();
 		CuteenFunc.highlightJsRender();
 	}
 };
@@ -416,9 +423,9 @@ Cuteen = {
 $(document).ready(function () {
 	Cuteen.init()
 })
-$(window).preloader({	
+$(window).preloader({
 	delay: 500
-});	
+});
 
 function Pjaxreload() {
 	Cuteen.init()
@@ -445,7 +452,7 @@ function AjaxComment() {
 			data: commentdata,
 			beforeSend: function () {
 				//$('#comment-submit-button').css('display', 'none');
-				$("#comment-submit-button").attr("disabled","disabled").text('提交中……');
+				$("#comment-submit-button").attr("disabled", "disabled").text('提交中……');
 				//$('#commenting').css('display', 'block');
 			},
 			error: function () {
