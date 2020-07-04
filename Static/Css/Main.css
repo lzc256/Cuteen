@@ -233,7 +233,7 @@ html::-webkit-scrollbar-thumb:hover {
 	color: var(--hei);
 }
 
-.bgbai, .cardstyle, .haveimg .nav-content li:hover:not(.dropdown) a::before, .mybox, .All_Pagination li a, .Link_Box li {
+.side-toolbar,.bgbai, .cardstyle, .haveimg .nav-content li:hover:not(.dropdown) a::before, .mybox, .All_Pagination li a, .Link_Box li {
 	background-color: var(--bai)
 }
 
@@ -477,6 +477,7 @@ html::-webkit-scrollbar-thumb:hover {
 
 .list-title, .listauthor, .list-comcontent, .cs2-title a, .card-title {
 	-webkit-line-clamp: 1;
+	word-break: break-word;
 }
 
 .media-content {
@@ -1198,18 +1199,17 @@ html::-webkit-scrollbar-thumb:hover {
 	background: var(--llan);
 }
 
-.Link_Box li:hover img {
-	transform: scale(1.1);
-}
-
 .Link_Box li a h4, .Link_Box li a p {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
+	word-break: break-all;
 }
 
 .Link_Box img {
 	border: 1px solid var(--hei);
+	width: 60px;
+    height: 60px;
 }
 
 /*搜索*/
@@ -1252,7 +1252,9 @@ html::-webkit-scrollbar-thumb:hover {
 	transition: all .5s;
 }
 
-.tns-slide-active[id] .top-title>*, .tns-slide-active[id] .top-title>a>* {
+.tns-slide-active[id] .top-title>*, .tns-slide-active[id] .top-title>a>* ,
+[id=tns1-item1]+.tns-slide-active .top-title>*, [id=tns1-item1]+.tns-slide-active .top-title>a>*
+{
 	opacity: 1;
 	transform: none;
 }
@@ -1602,7 +1604,7 @@ h2:focus, h3:focus, h4:focus, h5:focus {
 		width: 98%;
 	}
 	.card-title {
-		font-size: 1.5rem;
+		font-size: 20px;
 	}
 	.cardstyle, .cs1-height {
 		height: 10.5rem;
@@ -1649,7 +1651,7 @@ h2:focus, h3:focus, h4:focus, h5:focus {
 		-o-transform: translateX(-18.125rem);
 		transform: translateX(-18.125rem);
 	}
-	#sidebar {
+	#qjcbl,#sidebar{
 		display: none;
 	}
 }
@@ -2056,10 +2058,12 @@ code[hljs-codeblock-inner] {
 
 /*dark mode*/
 
-.DarkMode h1, .DarkMode h2, .DarkMode h3, .DarkMode h4, .DarkMode h5, .DarkMode h6, .DarkMode strong, .DarkMode table th, .DarkMode html, .DarkMode body, .DarkMode p, .DarkMode ol, .DarkMode ul, .DarkMode li, .DarkMode dl, .DarkMode dt, .DarkMode dd, .DarkMode blockquote, .DarkMode figure, .DarkMode fieldset, .DarkMode legend, .DarkMode textarea, .DarkMode pre, .DarkMode iframe, .DarkMode .h1, .DarkMode .h2, .DarkMode .h3, .DarkMode .h4, .DarkMode .h5, .DarkMode .h6, .DarkMode .bold, .DarkMode .input, .DarkMode a, .DarkMode #MENU::before, .DarkMode .mobile-nav-open .haveimg.nobg i, .DarkMode .mobile-nav-open .haveimg.nobg .sitetitle a, .DarkMode .Footer_content p, .DarkMode .haveimg.hasbg .nav-content li a, .DarkMode .card-title, .DarkMode .card-des, .DarkMode .card-info>.info *, .DarkMode .wznydbt, .DarkMode .All_Pagination li a, .DarkMode .tabs-wrap label, .DarkMode .top-mask .cs2-color, .DarkMode .top-mask .cs2-color * {
+.DarkMode .CTPlayer-control p.CTPlayer-name, .DarkMode h1, .DarkMode h2, .DarkMode h3, .DarkMode h4, .DarkMode h5, .DarkMode h6, .DarkMode strong, .DarkMode table th, .DarkMode html, .DarkMode body, .DarkMode p, .DarkMode ol, .DarkMode ul, .DarkMode li, .DarkMode dl, .DarkMode dt, .DarkMode dd, .DarkMode blockquote, .DarkMode figure, .DarkMode fieldset, .DarkMode legend, .DarkMode textarea, .DarkMode pre, .DarkMode iframe, .DarkMode .h1, .DarkMode .h2, .DarkMode .h3, .DarkMode .h4, .DarkMode .h5, .DarkMode .h6, .DarkMode .bold, .DarkMode .input, .DarkMode a, .DarkMode #MENU::before, .DarkMode .mobile-nav-open .haveimg.nobg i, .DarkMode .mobile-nav-open .haveimg.nobg .sitetitle a, .DarkMode .Footer_content p, .DarkMode .haveimg.hasbg .nav-content li a, .DarkMode .card-title, .DarkMode .card-des, .DarkMode .card-info>.info *, .DarkMode .wznydbt, .DarkMode .All_Pagination li a, .DarkMode .tabs-wrap label, .DarkMode .top-mask .cs2-color, .DarkMode .top-mask .cs2-color * {
 	color: rgba(255, 255, 255, 0.8);
 }
-
+.DarkMode .playController svg.icon path{
+	fill: rgba(255, 255, 255, 0.8);
+}
 .DarkMode darkb-text, .DarkMode darkb-text * {
 	color: #3e3e3e;
 	;
@@ -2073,7 +2077,7 @@ code[hljs-codeblock-inner] {
 	background-color: #3e3e3e;
 }
 
-.DarkMode .OwO.OwO-open .OwO-body, .DarkMode .nav, .DarkMode #footer, .DarkMode .cardstyle, .DarkMode .mybox, .DarkMode .bgbai, .DarkMode .Archive_notification, .DarkMode #post-menu, .DarkMode .mobile-nav-open .nav.nobg, .DarkMode .mobzkcon {
+.DarkMode .side-toolbar, .DarkMode .OwO.OwO-open .OwO-body, .DarkMode .nav, .DarkMode #footer, .DarkMode .cardstyle, .DarkMode .mybox, .DarkMode .bgbai, .DarkMode .Archive_notification, .DarkMode #post-menu, .DarkMode .mobile-nav-open .nav.nobg, .DarkMode .mobzkcon {
 	background-color: #1F1B24;
 }
 

@@ -274,16 +274,18 @@ var CuteenFunc = {
 			);
 	},
 	MobileBarAcc: function () {
-		$(`.mobzk`).on(`click`, function (event) {
-			var $this = $(this);
-			$this.closest(`#nav`).find(`.mobzkcon`).slideToggle(300);
-			if ($this.closest(`.mobfl`).hasClass(`active`)) {
-				$this.closest(`.mobfl`).removeClass(`active`);
-			} else {
-				$this.closest(`.mobfl`).addClass(`active`);
-			}
-			event.preventDefault();
-		});
+		//$(`.mobzk`).on(`click`, function (event) {
+		//	var $this = $(this);
+		$(`.mobzkcon`).slideToggle(300);
+		$(`.mobfl`).toggleClass('active')
+		/* if ($this.closest(`.mobfl`).hasClass(`active`)) {
+			$this.closest(`.mobfl`).removeClass(`active`);
+		} else {
+			$this.closest(`.mobfl`).addClass(`active`);
+		} */
+
+		//	event.preventDefault();
+		//});
 	},
 	MobileMenu: function () {
 		$("#mobar").toggleClass("leftopen");
@@ -406,6 +408,13 @@ var CuteenFunc = {
 			block.toggleClass("hljs-hide-linenumber");
 		});
 	},
+	FixSidebarHeight: function () {
+		var g = $('#qjcbl').outerHeight(true);
+		var j = $('#BLOG_CARD').outerHeight(true);
+		if (j < g) {
+			$('#BLOG_CARD').css('min-height', g)
+		}
+	}
 
 };
 
@@ -415,7 +424,7 @@ Cuteen = {
 		CuteenFunc.owo(); CuteenFunc.TopPost(); CuteenFunc.BackTop();
 		CuteenFunc.Toc(); CuteenFunc.NoCopy(); CuteenFunc.NavBgFix();
 		CuteenFunc.AjaxNext(); CuteenFunc.Acc(); CuteenFunc.Tab();
-		CuteenFunc.DarkModeChecked(); CuteenFunc.MobileBarAcc();
+		CuteenFunc.DarkModeChecked();CuteenFunc.FixSidebarHeight();
 		CuteenFunc.highlightJsRender();
 	}
 };
