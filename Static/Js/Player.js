@@ -252,14 +252,14 @@ var _createClass = function () {
 			value: function () {
 				this.audio.paused && (this.audio.play(), this.dom.cover.classList.add("CTPlayer-pause"))
 				$("#musicbtn").css("display", "none");
-				$("#musicstopbtn").css("display", "block");
+				$("#musicstopbtn").css("display", "inline-block");
 				$(".fa-music-alt").addClass("fa-spin")
 			}
 		}, {
 			key: "pause",
 			value: function () {
 				this.audio.paused || (this.audio.pause(), this.dom.cover.classList.remove("CTPlayer-pause"))
-				$("#musicbtn").css("display", "block");
+				$("#musicbtn").css("display", "inline-block");
 				$("#musicstopbtn").css("display", "none");
 				$(".fa-music-alt").removeClass("fa-spin")
 			}

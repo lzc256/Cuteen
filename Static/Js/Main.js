@@ -153,8 +153,8 @@ var CuteenFunc = {
 	},
 	AjaxNext: function () {
 		if (CUTEEN_SETTING.AJAX_PAGE || CUTEEN_SETTING.IS_MOBILE) {
-			$('.next').addClass("btn lan").click(function () {
-				$(this).addClass('loading').text('正在努力加载');
+			$('.next').click(function () {
+				$(this).text('正在努力加载');
 				var href = $(this).attr('href');
 				if (href != undefined) {
 					$.ajax({
@@ -162,7 +162,7 @@ var CuteenFunc = {
 						type: 'get',
 						error: function () { },
 						success: function (data) {
-							$(this).removeClass('loading').text('点击查看更多');
+							$('.next').text('点击查看更多');
 							var $res = $(data).find('.ajaxcard');
 							$('#BLOG_CARD').append($res.fadeIn(500));
 							var newhref = $(data).find('.next').attr('href');
@@ -191,13 +191,14 @@ var CuteenFunc = {
 		});
 	},
 	Tab: function () {
-		$(".tabs-item:first").addClass("active");
-		$(".tabs-content:first").addClass("active");
-		$(".tabs-item").click(function () {
-			$(this).addClass("active");
-			$(this).siblings(this).removeClass("active");
-			$(".tabs-content").siblings(".tabs-content").removeClass("active");
-			$(".tabs-content").eq($(this).index()).addClass("active");
+		$(".tabs-wrap").each(function () {
+			$(".tabs-item:nth-of-type(1)").addClass("active");
+			$(".tabs-content:nth-of-type(1)").addClass("active");
+			$(".tabs-item").click(function () {
+				$(this).addClass("active");
+				$(this).siblings().removeClass("active");
+				$(this).siblings(".tabs-content").eq($(this).index()).addClass("active");
+			});
 		});
 	},
 	DarkModeChecked: function () {
@@ -227,7 +228,6 @@ var CuteenFunc = {
 				$("html").addClass("DarkMode");
 			}
 		}
-
 	},
 	SwitchDarkMode: function () {
 		$('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"><svg class="icon yueliang" aria-hidden="true"><use xlink:href="#icon-yueliang"></use></svg><svg class="icon taiyang" aria-hidden="true"><use xlink:href="#icon-taiyang1-copy-copy"></use></svg></div></div>').appendTo($("body"))
@@ -274,18 +274,8 @@ var CuteenFunc = {
 			);
 	},
 	MobileBarAcc: function () {
-		//$(`.mobzk`).on(`click`, function (event) {
-		//	var $this = $(this);
-		$(`.mobzkcon`).slideToggle(300);
-		$(`.mobfl`).toggleClass('active')
-		/* if ($this.closest(`.mobfl`).hasClass(`active`)) {
-			$this.closest(`.mobfl`).removeClass(`active`);
-		} else {
-			$this.closest(`.mobfl`).addClass(`active`);
-		} */
-
-		//	event.preventDefault();
-		//});
+		$('.mobzkcon').slideToggle(300);
+		$('.mobfl').toggleClass('active')
 	},
 	MobileMenu: function () {
 		$("#mobar").toggleClass("leftopen");
@@ -424,13 +414,17 @@ Cuteen = {
 		CuteenFunc.owo(); CuteenFunc.TopPost(); CuteenFunc.BackTop();
 		CuteenFunc.Toc(); CuteenFunc.NoCopy(); CuteenFunc.NavBgFix();
 		CuteenFunc.AjaxNext(); CuteenFunc.Acc(); CuteenFunc.Tab();
-		CuteenFunc.DarkModeChecked();CuteenFunc.FixSidebarHeight();
+		CuteenFunc.DarkModeChecked(); CuteenFunc.FixSidebarHeight();
 		CuteenFunc.highlightJsRender();
+	},
+	style: function () {
+		$(".clicknext").children(".next").addClass('btn lan');
 	}
 };
 
 $(document).ready(function () {
-	Cuteen.init()
+	Cuteen.init(); Cuteen.style();
+
 })
 $(window).preloader({
 	delay: 500
@@ -453,39 +447,28 @@ MathJax = {
 }
 
 function AjaxComment() {
-	$('#comment-form').submit(function (event) {
-		var commentdata = $(this).serializeArray();
+	$('#comment-form').submit(function () {
+
 		$.ajax({
 			url: $(this).attr('action'),
 			type: $(this).attr('method'),
-			data: commentdata,
+			data: $(this).serializeArray(),
 			beforeSend: function () {
-				//$('#comment-submit-button').css('display', 'none');
 				$("#comment-submit-button").attr("disabled", "disabled").text('提交中……');
-				//$('#commenting').css('display', 'block');
 			},
 			error: function () {
-				iziToast.error({
-					title: '评论失败',
-					message: '发生了未知错误，请刷新后重试',
-					position: 'topRight',
-				})
-				//$('#commenting').css('display', 'none');
-				$('#comment-submit-button').css('display', 'none');
+				iziToast.error({ title: '评论失败', message: '参数提交错误，请刷新后重试', position: 'topRight', })
+				$("#comment-submit-button").removeClass('lv').addClass('hong').text('提交失败');
+				return false;
 			},
 			success: function (data) {
-				//$('#commenting').css('display', 'none');
-				$('#comment-submit-button').css('display', 'unset');
+				$("#comment-submit-button").removeAttr("disabled", "disabled").text('提交评论');
 				var error = /<title>Error<\/title>/;
 				if (error.test(data)) {
 					var text = data.match(/<div(.*?)>(.*?)<\/div>/i);
-					var str = '发生了未知错误，请刷新后重试';
+					var str = '回传参数错误，请刷新后重试';
 					if (text != null) str = text[2];
-					iziToast.error({
-						title: '评论失败',
-						message: str,
-						position: 'topRight',
-					})
+					iziToast.error({ title: '评论失败', message: str, position: 'topRight' })
 				} else {
 					//评论框复位（清空文本，刷新高度）
 					$('#textarea').val('');
@@ -497,19 +480,7 @@ function AjaxComment() {
 					$.each(commentdata, function (i, field) {
 						if (field.name == 'parent') parent = false;
 					});
-                    /*                         if (!parent || !$('div.All_Pagination .prev').length) {
-                                                var latest = -19260817;
-                                                $('#comments', data).each(function() {
-                                                    var id = $(this).attr('id'),
-                                                        coid = parseInt(id.substring(8));
-                                                    if (coid > latest) {
-                                                        latest = coid;
-                                                        target = '#' + id;
-                                                    }
-                                                });
-                                            } */
 					//获取新ID
-
 					if ($('.All_Pagination .prev').length && !parent) {
 						var dd = $(".prev a").attr("href"); //获取上页地址
 						$(".prev a").attr("href", ""); //将地址清空
@@ -517,22 +488,14 @@ function AjaxComment() {
 						$(".prev a").attr("href", dd); //将地址放回去
 						$('.prev a').get(0).click(); //点击这个超链接
 					} else {
-
 						new_id = '';
-						// $('#commentcontent').html($('#commentcontent', data).html());
-
 					} //判断当前评论列表是否在第一页,并且只会在母评论时候才会生效 */
-
 					new_id = $(".comment-list", data).html().match(/id=\"?comment-\d+/g).join().match(/\d+/g).sort(function (a, b) {
 						return a - b
 					}).pop();
 					$('#commentcontent').html($('#commentcontent', data).html()); //更新评论列表
 					//下面是重载函数以及评论成功提示
-					iziToast.success({
-						title: '评论成功',
-						message: '您的留言已收到',
-						position: 'topRight'
-					})
+					iziToast.success({ title: '评论成功', message: '您的留言已收到', position: 'topRight' })
 					//跳转到新ID
 					if (new_id) {
 						var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');

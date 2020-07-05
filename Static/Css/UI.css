@@ -189,7 +189,8 @@
 
 blur-text, blur-text * {
     text-shadow: rgba(0, 0, 0, 0.701961) 0px 0px 10px;
-    color: transparent;
+	color: transparent;
+	padding-top: 3px;
 }
 
 /*黑幕*/
@@ -198,7 +199,8 @@ darkb-text, darkb-text * {
     background-color: #12121c;
     color: #12121c;
     text-shadow: none;
-    transition: color 0.3s;
+	transition: color 0.3s;
+	padding-top: 3px;
 }
 
 darkb-text:hover, darkb-text:active {
@@ -208,6 +210,7 @@ darkb-text:hover, darkb-text:active {
 /*彩虹文字*/
 
 rainbow-text, rainbow-text * {
+	padding-top: 3px;
     background-image: linear-gradient( to left, orangered, orange, gold, lightgreen, cyan, dodgerblue, mediumpurple, hotpink, orangered);
     background-size: 110vw;
     -webkit-background-clip: text;
