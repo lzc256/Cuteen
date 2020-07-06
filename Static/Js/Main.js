@@ -6,7 +6,7 @@ var CuteenFunc = {
 			(new SidebarFollow()).init({
 				element: jQuery('.sidebar-2'),
 				prevElement: jQuery('.sidebar-1'),
-				distanceToTop: 60
+				distanceToTop: 70
 			});
 		}
 	},
@@ -72,7 +72,7 @@ var CuteenFunc = {
 	},
 	TopPost: function () {
 		if ($(".top-top").length > 0) {
-			var slider = tns({
+			new tns({
 				container: '.top-top',
 				items: 1,
 				axis: 'vertical',
@@ -152,6 +152,7 @@ var CuteenFunc = {
 		})();
 	},
 	AjaxNext: function () {
+		console.log('doubi')
 		if (CUTEEN_SETTING.AJAX_PAGE || CUTEEN_SETTING.IS_MOBILE) {
 			$('.next').click(function () {
 				$(this).text('正在努力加载');
@@ -185,9 +186,9 @@ var CuteenFunc = {
 			$(".allpost .accordion-item").first().addClass("open");
 		};
 		$(".accordion > .accordion-item.open").children(".accordion-panel").slideDown();
-		$(".accordion > .accordion-item ").click(function () {
-			$(this).siblings(".accordion-item").removeClass("open").children(".accordion-panel").slideUp();
-			$(this).toggleClass("open").children(".accordion-panel").slideToggle("ease-out");
+		$(".accordion  .accordion-thumb").click(function () {
+			$(this).parent().siblings(".accordion-item").removeClass("open").children(".accordion-panel").slideUp();
+			$(this).parent().toggleClass("open").children(".accordion-panel").slideToggle("ease-out");
 		});
 	},
 	Tab: function () {
@@ -338,9 +339,6 @@ var CuteenFunc = {
 					<div class="hljs-control-btn hljs-control-copy" id=` + copyBtnID + `>
 						<i class="fa fa-clipboard"></i>
 					</div>
-					<div class="hljs-control-btn hljs-control-fullscreen">
-						<i class="fa fa-arrows-alt"></i>
-					</div>
 				</div>`);
 			let clipboard = new ClipboardJS("#" + copyBtnID, {
 				text: function (trigger) {
@@ -380,15 +378,6 @@ var CuteenFunc = {
 		});
 	},
 	CodeToolBar: function () {
-		$(document).on("click", ".hljs-control-fullscreen", function () {
-			let block = $(this).parent().parent();
-			block.toggleClass("hljs-codeblock-fullscreen");
-			if (block.hasClass("hljs-codeblock-fullscreen")) {
-				$("html").addClass("noscroll codeblock-fullscreen");
-			} else {
-				$("html").removeClass("noscroll codeblock-fullscreen");
-			}
-		});
 		$(document).on("click", ".hljs-control-toggle-break-line", function () {
 			let block = $(this).parent().parent();
 			block.toggleClass("hljs-break-line");
@@ -419,19 +408,28 @@ Cuteen = {
 	},
 	style: function () {
 		$(".clicknext").children(".next").addClass('btn lan');
+	},
+	loading: function () {
+		$(window).preloader({
+			selector: "#page-loading",
+			delay: 0
+		});
 	}
 };
 
 $(document).ready(function () {
-	Cuteen.init(); Cuteen.style();
-
+	Cuteen.init(); Cuteen.style(); Cuteen.loading();
 })
-$(window).preloader({
-	delay: 500
-});
 
-function Pjaxreload() {
-	Cuteen.init()
+function before_pjax() {
+	
+	$('body').append('<div id="page-loading" ><div class="circle"></div></div>');
+	CuteenFunc.MobileCloseBar();
+}
+function after_pjax() {
+	Cuteen.loading();
+	Cuteen.init();
+	Cuteen.style();
 	AjaxComment();
 }
 MathJax = {
@@ -477,7 +475,7 @@ function AjaxComment() {
 					if ($('#cancel-comment-reply-link').css('display') != 'none') $('#cancel-comment-reply-link').click();
 					var target = '#comments',
 						parent = true;
-					$.each(commentdata, function (i, field) {
+					$.each($(this).serializeArray(), function (i, field) {
 						if (field.name == 'parent') parent = false;
 					});
 					//获取新ID
