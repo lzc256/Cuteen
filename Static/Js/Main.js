@@ -399,7 +399,7 @@ var CuteenFunc = {
 Cuteen = {
 	init: function () {
 		CuteenFunc.SearchModel(); CuteenFunc.sidebar(); CuteenFunc.CodeToolBar();
-		CuteenFunc.owo(); CuteenFunc.TopPost(); CuteenFunc.BackTop();
+		CuteenFunc.owo(); CuteenFunc.TopPost(); 
 		CuteenFunc.Toc(); CuteenFunc.NoCopy(); CuteenFunc.NavBgFix();
 		CuteenFunc.Acc(); CuteenFunc.Tab();
 		CuteenFunc.DarkModeChecked(); CuteenFunc.FixSidebarHeight();
@@ -417,7 +417,7 @@ Cuteen = {
 };
 
 $(document).ready(function () {
-	Cuteen.init(); Cuteen.style(); Cuteen.loading();CuteenFunc.AjaxNext();
+	Cuteen.init(); Cuteen.style(); Cuteen.loading();CuteenFunc.AjaxNext();CuteenFunc.BackTop();
 })
 
 function before_pjax() {
@@ -432,7 +432,7 @@ function after_pjax() {
 	AjaxComment();
 }
 function end_pjax() {
-	CuteenFunc.AjaxNext();
+	CuteenFunc.AjaxNext();CuteenFunc.BackTop();
 }
 MathJax = {
 	options: {
