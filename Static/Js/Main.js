@@ -152,11 +152,10 @@ var CuteenFunc = {
 		})();
 	},
 	AjaxNext: function () {
-		console.log('doubi')
 		if (CUTEEN_SETTING.AJAX_PAGE || CUTEEN_SETTING.IS_MOBILE) {
 			$('.next').click(function () {
-				$(this).text('正在努力加载');
-				var href = $(this).attr('href');
+				$('.next').text('正在努力加载');
+				var href = $('.next').attr('href');
 				if (href != undefined) {
 					$.ajax({
 						url: href,
@@ -402,7 +401,7 @@ Cuteen = {
 		CuteenFunc.SearchModel(); CuteenFunc.sidebar(); CuteenFunc.CodeToolBar();
 		CuteenFunc.owo(); CuteenFunc.TopPost(); CuteenFunc.BackTop();
 		CuteenFunc.Toc(); CuteenFunc.NoCopy(); CuteenFunc.NavBgFix();
-		CuteenFunc.AjaxNext(); CuteenFunc.Acc(); CuteenFunc.Tab();
+		CuteenFunc.Acc(); CuteenFunc.Tab();
 		CuteenFunc.DarkModeChecked(); CuteenFunc.FixSidebarHeight();
 		CuteenFunc.highlightJsRender();
 	},
@@ -418,11 +417,11 @@ Cuteen = {
 };
 
 $(document).ready(function () {
-	Cuteen.init(); Cuteen.style(); Cuteen.loading();
+	Cuteen.init(); Cuteen.style(); Cuteen.loading();CuteenFunc.AjaxNext();
 })
 
 function before_pjax() {
-	
+
 	$('body').append('<div id="page-loading" ><div class="circle"></div></div>');
 	CuteenFunc.MobileCloseBar();
 }
@@ -431,6 +430,9 @@ function after_pjax() {
 	Cuteen.init();
 	Cuteen.style();
 	AjaxComment();
+}
+function end_pjax() {
+	CuteenFunc.AjaxNext();
 }
 MathJax = {
 	options: {

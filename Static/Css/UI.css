@@ -729,6 +729,7 @@ rainbow-text, rainbow-text * {
 	-webkit-transform: translateY(0px);
 	transform: translateY(0px);
 	text-shadow: 0 0 0;
+	display: block;
 }
 
 .tabs-content {
@@ -742,6 +743,7 @@ rainbow-text, rainbow-text * {
 	-webkit-transform: translateY(-3px);
 	transform: translateY(-3px);
 	border-radius: 6px;
+	display:none
 }
 
 /*tags*/
