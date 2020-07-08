@@ -1,12 +1,12 @@
+console.log(' %c Theme Cuteen %c https://blog.zwying.com/ ', 'color: #fff; background: #2dce89; padding:5px;', 'background: #1c2b36; padding:5px;');
 
-console.log(' %c Theme Cuteen %c https://blog.zwying.com ', 'color: #fff; background: #2dce89; padding:5px;', 'background: #1c2b36; padding:5px;');
 var CuteenFunc = {
 	sidebar: function () {
 		if (0 < $("#sidebar").length) {
 			(new SidebarFollow()).init({
 				element: jQuery('.sidebar-2'),
 				prevElement: jQuery('.sidebar-1'),
-				distanceToTop: 70
+				distanceToTop: 85
 			});
 		}
 	},
@@ -204,19 +204,23 @@ var CuteenFunc = {
 	DarkModeChecked: function () {
 		if (CUTEEN_SETTING.THEME_COLOR == '2') {
 			$("html").addClass("DarkMode");
+			$(":root").css("--darkmode", "#475669");
 			return;
 		}
 		else if (CUTEEN_SETTING.THEME_COLOR == '1') {
 			$("html").removeClass("DarkMode");
+			$(":root").css("--darkmode", "#eff2f7");
 			return;
 		}
 		if (CUTEEN_SETTING.THEME_COLOR == '0' && document.cookie.replace(/(?:(?:^|.*;\s*)DarkMode\s*\=\s*([^;]*).*$)|^.*$/, "$1") === '') {
 			if (new Date().getHours() >= 20 || new Date().getHours() < 6) {
 				$("html").addClass("DarkMode");
+				$(":root").css("--darkmode", "#475669");
 				document.cookie = "DarkMode=1;path=/";
 				console.log('夜间模式开启');
 			} else {
 				$("html").removeClass("DarkMode");
+				$(":root").css("--darkmode", "#eff2f7");
 				document.cookie = "DarkMode=0;path=/";
 				console.log('夜间模式关闭');
 			}
@@ -224,8 +228,10 @@ var CuteenFunc = {
 			var DarkMode = document.cookie.replace(/(?:(?:^|.*;\s*)DarkMode\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
 			if (DarkMode == '0') {
 				$("html").removeClass("DarkMode");
+				$(":root").css("--darkmode", "#eff2f7");
 			} else if (DarkMode == '1') {
 				$("html").addClass("DarkMode");
+				$(":root").css("--darkmode", "#475669");
 			}
 		}
 	},
@@ -233,12 +239,16 @@ var CuteenFunc = {
 		$('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"><svg class="icon yueliang" aria-hidden="true"><use xlink:href="#icon-yueliang"></use></svg><svg class="icon taiyang" aria-hidden="true"><use xlink:href="#icon-taiyang1-copy-copy"></use></svg></div></div>').appendTo($("body"))
 		$(".DarkMode").length > 0 ? ($('.yueliang').css('display', 'block'), $('.taiyang').css('display', 'none')) : ($('.taiyang').css('display', 'block'), $('.yueliang').css('display', 'none')), setTimeout(function () {
 			var DarkMode = document.cookie.replace(/(?:(?:^|.*;\s*)DarkMode\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
-			(DarkMode == '0') ? (setTimeout("$('html').addClass('DarkMode'),$('.taiyang').css('display','none'),$('.yueliang').css('display','block')", 900), document.cookie = "DarkMode=1;path=/", console.log('夜间模式开启'), $('#modeicon').attr("xlink:href", "#icon-sun")) : (setTimeout("$('html').removeClass('DarkMode'),$('.yueliang').css('display','none'),$('.taiyang').css('display','block')", 900), document.cookie = "DarkMode=0;path=/", console.log('夜间模式关闭'), $('#modeicon').attr("xlink:href", "#icon-_moon"))
-				, setTimeout(function () {
-					$(".Cuteen_DarkSky").fadeOut(1e3, function () {
-						$(this).remove()
-					})
-				}, 2e3)
+			if (DarkMode == '0') {
+				setTimeout("$('html').addClass('DarkMode');$(':root').css('--darkmode', '#475669');$('.taiyang').css('display','none'),$('.yueliang').css('display','block')", 900), document.cookie = "DarkMode=1;path=/", console.log('夜间模式开启'), $('#modeicon').attr("xlink:href", "#icon-sun")
+			} else {
+				setTimeout("$('html').removeClass('DarkMode');$(':root').css('--darkmode', '#eff2f7');$('.yueliang').css('display','none'),$('.taiyang').css('display','block')", 900), document.cookie = "DarkMode=0;path=/", console.log('夜间模式关闭'), $('#modeicon').attr("xlink:href", "#icon-_moon")
+			};
+			setTimeout(function () {
+				$(".Cuteen_DarkSky").fadeOut(1e3, function () {
+					$(this).remove()
+				})
+			}, 2e3)
 		}), 50
 	},
 	upstar: function () {
@@ -392,22 +402,23 @@ var CuteenFunc = {
 		if (j < g) {
 			$('#BLOG_CARD').css('min-height', g)
 		}
+	},
+	FixSomeStyle: function () {
+		var o = $(".widthhhh").width();
+		$(".sidebar-2").css("width", o);
 	}
-
 };
 
 Cuteen = {
 	init: function () {
 		CuteenFunc.SearchModel(); CuteenFunc.sidebar(); CuteenFunc.CodeToolBar();
-		CuteenFunc.owo(); CuteenFunc.TopPost(); 
+		CuteenFunc.owo(); CuteenFunc.FixSomeStyle();
 		CuteenFunc.Toc(); CuteenFunc.NoCopy(); CuteenFunc.NavBgFix();
 		CuteenFunc.Acc(); CuteenFunc.Tab();
 		CuteenFunc.DarkModeChecked(); CuteenFunc.FixSidebarHeight();
-		CuteenFunc.highlightJsRender();
+		CuteenFunc.highlightJsRender(); CuteenFunc.AjaxNext(); CuteenFunc.BackTop();
 	},
-	style: function () {
-		$(".clicknext").children(".next").addClass('btn lan');
-	},
+
 	loading: function () {
 		$(window).preloader({
 			selector: "#page-loading",
@@ -417,22 +428,21 @@ Cuteen = {
 };
 
 $(document).ready(function () {
-	Cuteen.init(); Cuteen.style(); Cuteen.loading();CuteenFunc.AjaxNext();CuteenFunc.BackTop();
+	Cuteen.init(); Cuteen.loading(); CuteenFunc.TopPost();
 })
 
 function before_pjax() {
-
 	$('body').append('<div id="page-loading" ><div class="circle"></div></div>');
 	CuteenFunc.MobileCloseBar();
 }
 function after_pjax() {
 	Cuteen.loading();
-	Cuteen.init();
-	Cuteen.style();
-	AjaxComment();
+	CuteenFunc.TopPost();
 }
 function end_pjax() {
-	CuteenFunc.AjaxNext();CuteenFunc.BackTop();
+	Cuteen.init();
+
+	AjaxComment();
 }
 MathJax = {
 	options: {
