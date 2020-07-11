@@ -6,7 +6,7 @@
 SidebarFollow = function() {
 
 	this.config = {
-		element: null, // 处理的节点
+		element: null, // 处理的节点 
 		distanceToTop: 0 // 节点上边到页面顶部的距离
 	};
 

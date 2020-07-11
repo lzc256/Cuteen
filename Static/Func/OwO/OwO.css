@@ -30,13 +30,14 @@
     max-height: 0px;
     overflow: hidden;
     font-size: 0;
-    text-align: left
+	text-align: left;
+	transition:  .5s max-height;
 }
 
 .OwO-open .OwO-body {
     max-height: 200px !important;
     margin: 10px 0 !important;
-    transition:  1s max-height;
+    transition:  .5s max-height;
     overflow-y: auto;
 } 
 .OwO.OwO-open .OwO-logo {

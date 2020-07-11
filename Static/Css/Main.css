@@ -47,9 +47,7 @@ html, body, p, ol, ul, li, dl, dt, dd, blockquote, figure, fieldset, legend, tex
 	color: var(--hei);
 }
 
-ul, li {
-	list-style: none;
-}
+
 
 a {
 	color: var(--hei);
@@ -235,7 +233,7 @@ html::-webkit-scrollbar-thumb:hover {
 	color: var(--hei);
 }
 
-.side-toolbar, .bgbai, .cardstyle, .haveimg .nav-content li:hover:not(.dropdown) a::before, .mybox, .All_Pagination li a, .Link_Box li {
+.DarkMode .iziModal-content .input,.side-toolbar, .bgbai, .cardstyle, .haveimg .nav-content li:hover:not(.dropdown) a::before, .mybox, .All_Pagination li a, .Link_Box li {
 	background-color: var(--bai)
 }
 
@@ -281,7 +279,15 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 /*翻页部分*/
-.clicknext>.next {
+.page-navigator>li{
+	display: none;
+}
+.page-navigator>.shangyiye,
+.page-navigator>.xiayiye {
+	margin: 0 2rem;
+	display: inline-block;
+}
+.clicknext>.next a{
 	display: inline-block;
     background:var(--bai);
     border-radius: 100px;
@@ -295,15 +301,15 @@ html::-webkit-scrollbar-thumb:hover {
 	letter-spacing: 1px;
 }
 
-.clicknext>.next:hover {
+.clicknext>.next:hover a{
 	color: #20a0ff;
     box-shadow: 0 10px 13px rgba(32,160,255,.3), 0 0 0 25px rgba(32,160,255,0), 0 0 0 25px rgba(32,160,255,0);
     transition: all 1s,box-shadow 1s ease-out .1s;
 }
-.DarkMode .clicknext>.next{
+.DarkMode .clicknext>.next a{
 	border: 1px solid #a4a4a4;
 }
-.DarkMode .clicknext>.next:hover{
+.DarkMode .clicknext>.next:hover a{
     border-color: #20a0ff;
 }
 .clicknext {
@@ -492,7 +498,10 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 /*sidebar*/
-
+.sidebar-2.affix {
+	position: fixed;
+	top:85px
+}
 .listavatar {
 	-webkit-box-shadow: 0 0.125rem 1.0625rem 0 rgba(0, 0, 0, .1);
 	box-shadow: 0 0.125rem 1.0625rem 0 rgba(0, 0, 0, .1);
@@ -749,6 +758,11 @@ html::-webkit-scrollbar-thumb:hover {
 
 /*navbar*/
 
+
+
+.nav ul,.nav li ,.ajaxcard ul,.ajaxcard li{
+	list-style: none;
+}
 .sj .nav.p2 {
 	padding: 0.8rem 1.1rem;
 }
@@ -841,7 +855,16 @@ html::-webkit-scrollbar-thumb:hover {
 .haveimg.nobg .dropblur {
 	background-color: rgba(28, 31, 33, 0.8);
 }
-
+.headroom {
+	will-change: transform;
+	transition: transform 200ms linear;
+  }
+  .headroom--pinned {
+	transform: translateY(0%);
+  }
+  .headroom--unpinned {
+	transform: translateY(-100%);
+  }
 /*hero*/
 
 .hero-title {
@@ -1305,6 +1328,7 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .Link_Box li, .Link_Box li img {
+	list-style: none;
 	transition: all var(--gd) 0.2s;
 }
 
@@ -1688,7 +1712,7 @@ h2:focus, h3:focus, h4:focus, h5:focus {
 	background-color: var(--hui);
 }
 
-.mobfl.active .mobzk i {
+.mobfl.active .mobzk .fa-angle-right {
 	transform: rotate(90deg);
 }
 
@@ -1911,21 +1935,9 @@ pre.hljs-codeblock .hljs-control {
 	top: 25px;
 }
 
-.hljs-control-toggle-linenumber:before {
-	content: "\9690\85cf\884c\53f7";
-}
 
-pre.hljs-codeblock.hljs-hide-linenumber .hljs-control-toggle-linenumber:before {
-	content: "\663e\793a\884c\53f7";
-}
 
-pre.hljs-codeblock.hljs-break-line .hljs-control-toggle-break-line:before {
-	content: "\5173\95ed\6298\884c";
-}
 
-.hljs-control-toggle-break-line:before {
-	content: "\5f00\542f\6298\884c";
-}
 
 .hljs-control-copy:before {
 	content: "\590d\5236";
@@ -1949,19 +1961,8 @@ pre.hljs-codeblock.hljs-break-line .hljs-control-toggle-break-line:before {
 	transition: all .3s ease;
 }
 
-pre.hljs-codeblock.hljs-break-line .hljs-ln-code {
-	line-break: anywhere;
-	white-space: break-spaces;
-}
 
-pre.hljs-codeblock.hljs-hide-linenumber .hljs-ln-numbers {
-	width: 0px;
-	opacity: 0;
-}
 
-pre.hljs-codeblock.hljs-hide-linenumber .hljs-ln-code {
-	padding-left: 4px !important;
-}
 
 .hljs-ln tbody tr {
 	background-color: inherit;
@@ -2132,14 +2133,14 @@ code[hljs-codeblock-inner] {
 
 .DarkMode darkb-text, .DarkMode darkb-text * {
 	color: #3e3e3e;
-	;
+	
 }
 
 .DarkMode .Link_Box li, .DarkMode body, .DarkMode .banquan, .DarkMode hr, .DarkMode textarea, .DarkMode .All_Pagination li a, .DarkMode .input, .DarkMode .tabs-wrap label, .DarkMode .is-active-link::before, .DarkMode #nav, .DarkMode .duta tbody tr {
 	background-color: #121212;
 }
 
-.DarkMode .clicknext>.next ,.DarkMode hr, .DarkMode .OwO .OwO-body .OwO-items .OwO-item, .DarkMode blockquote, .DarkMode .duta thead tr, .DarkMode .duta tfoot tr, .DarkMode .OwO .OwO-body .OwO-bar .OwO-packages .OwO-package-active, .DarkMode .dropblur, .DarkMode darkb-text, .DarkMode .tabs-item.active, .DarkMode .tabs-content, .DarkMode .tabs-wrap, .DarkMode .mobfl.active, .DarkMode code, .DarkMode pre {
+.DarkMode .clicknext>.next a,.DarkMode hr, .DarkMode .OwO .OwO-body .OwO-items .OwO-item, .DarkMode blockquote, .DarkMode .duta thead tr, .DarkMode .duta tfoot tr, .DarkMode .OwO .OwO-body .OwO-bar .OwO-packages .OwO-package-active, .DarkMode .dropblur, .DarkMode darkb-text, .DarkMode .tabs-item.active, .DarkMode .tabs-content, .DarkMode .tabs-wrap, .DarkMode .mobfl.active, .DarkMode code, .DarkMode pre {
 	background-color: #3e3e3e;
 }
 

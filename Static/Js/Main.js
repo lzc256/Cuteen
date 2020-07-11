@@ -2,13 +2,25 @@ console.log(' %c Theme Cuteen %c https://blog.zwying.com/ ', 'color: #fff; backg
 
 var CuteenFunc = {
 	sidebar: function () {
+		var b;
+		(CUTEEN_SETTING.HEADROOM) ? b = 16 : b = 85
 		if (0 < $("#sidebar").length) {
 			(new SidebarFollow()).init({
 				element: jQuery('.sidebar-2'),
 				prevElement: jQuery('.sidebar-1'),
-				distanceToTop: 85
+				distanceToTop: b
 			});
 		}
+	},
+	QiPao: function () {
+		if (CUTEEN_SETTING.QIPAO) {
+		$('#hero').circleMagic({
+			radius: 10,
+			density: .2,
+			color: 'rgba(255,255,255,.4)',
+			clearOffset: 0.99
+		});
+	}
 	},
 	owo: function () {
 		if ($(".OwO666").length > 0) {
@@ -153,7 +165,7 @@ var CuteenFunc = {
 	},
 	AjaxNext: function () {
 		if (CUTEEN_SETTING.AJAX_PAGE || CUTEEN_SETTING.IS_MOBILE) {
-			$('.next').click(function () {
+			$('.next:not(.shangyiye):not(.xiayiye)').click(function () {
 				$('.next').text('正在努力加载');
 				var href = $('.next').attr('href');
 				if (href != undefined) {
@@ -164,7 +176,13 @@ var CuteenFunc = {
 						success: function (data) {
 							$('.next').text('点击查看更多');
 							var $res = $(data).find('.ajaxcard');
-							$('#BLOG_CARD').append($res.fadeIn(500));
+							if (CUTEEN_SETTING.SIDEBAR) {
+								//  $('.cuteup>.theiaStickySidebar>section').append($res.fadeIn(500));
+								$('.cuteup').append($res.fadeIn(500));
+							} else {
+								$('.cuteup').append($res.fadeIn(500));
+							}
+
 							var newhref = $(data).find('.next').attr('href');
 							if (newhref != undefined) {
 								$('.next').attr('href', newhref);
@@ -339,12 +357,6 @@ var CuteenFunc = {
 			$(block).attr("hljs-codeblock-inner", "");
 			let copyBtnID = "copy_btn_" + CuteenFunc.randomString();
 			$(block).parent().append(`<div class="hljs-control hljs-title">
-					<div class="hljs-control-btn hljs-control-toggle-linenumber">
-						<i class="fa fa-list"></i>
-					</div>
-					<div class="hljs-control-btn hljs-control-toggle-break-line">
-						<i class="fa fa-align-left"></i>
-					</div>
 					<div class="hljs-control-btn hljs-control-copy" id=` + copyBtnID + `>
 						<i class="fa fa-clipboard"></i>
 					</div>
@@ -387,14 +399,7 @@ var CuteenFunc = {
 		});
 	},
 	CodeToolBar: function () {
-		$(document).on("click", ".hljs-control-toggle-break-line", function () {
-			let block = $(this).parent().parent();
-			block.toggleClass("hljs-break-line");
-		});
-		$(document).on("click", ".hljs-control-toggle-linenumber", function () {
-			let block = $(this).parent().parent();
-			block.toggleClass("hljs-hide-linenumber");
-		});
+
 	},
 	FixSidebarHeight: function () {
 		var g = $('#qjcbl').outerHeight(true);
@@ -403,18 +408,26 @@ var CuteenFunc = {
 			$('#BLOG_CARD').css('min-height', g)
 		}
 	},
+
 	FixSomeStyle: function () {
-		var o = $(".widthhhh").width();
-		$(".sidebar-2").css("width", o);
+		$(".sidebar-2").css("width", $(".widthhhh").width());
+		if (0 < $('.sidebar-2').prev().length) {
+			$('.sidebar-2').css('position', 'static').prev().remove();
+		}
+		if (CUTEEN_SETTING.HEADROOM) {
+			var myElement = document.querySelector(".nav");
+			var headroom = new Headroom(myElement);
+			headroom.init();
+		}
 	}
 };
 
 Cuteen = {
 	init: function () {
-		CuteenFunc.SearchModel(); CuteenFunc.sidebar(); CuteenFunc.CodeToolBar();
-		CuteenFunc.owo(); CuteenFunc.FixSomeStyle();
+		CuteenFunc.SearchModel(); CuteenFunc.CodeToolBar();
+		CuteenFunc.owo(); CuteenFunc.FixSomeStyle();CuteenFunc.QiPao();
 		CuteenFunc.Toc(); CuteenFunc.NoCopy(); CuteenFunc.NavBgFix();
-		CuteenFunc.Acc(); CuteenFunc.Tab();
+		CuteenFunc.Acc(); CuteenFunc.Tab(); CuteenFunc.sidebar();
 		CuteenFunc.DarkModeChecked(); CuteenFunc.FixSidebarHeight();
 		CuteenFunc.highlightJsRender(); CuteenFunc.AjaxNext(); CuteenFunc.BackTop();
 	},
@@ -440,9 +453,10 @@ function after_pjax() {
 	CuteenFunc.TopPost();
 }
 function end_pjax() {
-	Cuteen.init();
 
+	Cuteen.init();
 	AjaxComment();
+
 }
 MathJax = {
 	options: {
