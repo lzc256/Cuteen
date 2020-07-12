@@ -287,7 +287,7 @@ html::-webkit-scrollbar-thumb:hover {
 	margin: 0 2rem;
 	display: inline-block;
 }
-.clicknext>.next a{
+.clicknext>.next a,.clicknext>a.next{
 	display: inline-block;
     background:var(--bai);
     border-radius: 100px;
@@ -301,15 +301,15 @@ html::-webkit-scrollbar-thumb:hover {
 	letter-spacing: 1px;
 }
 
-.clicknext>.next:hover a{
+.clicknext>.next:hover a,.clicknext>a.next:hover{
 	color: #20a0ff;
     box-shadow: 0 10px 13px rgba(32,160,255,.3), 0 0 0 25px rgba(32,160,255,0), 0 0 0 25px rgba(32,160,255,0);
     transition: all 1s,box-shadow 1s ease-out .1s;
 }
-.DarkMode .clicknext>.next a{
+.DarkMode .clicknext>.next a,.DarkMode .clicknext>a.next{
 	border: 1px solid #a4a4a4;
 }
-.DarkMode .clicknext>.next:hover a{
+.DarkMode .clicknext>.next:hover a,.DarkMode .clicknext>a.next:hover{
     border-color: #20a0ff;
 }
 .clicknext {
@@ -2140,7 +2140,7 @@ code[hljs-codeblock-inner] {
 	background-color: #121212;
 }
 
-.DarkMode .clicknext>.next a,.DarkMode hr, .DarkMode .OwO .OwO-body .OwO-items .OwO-item, .DarkMode blockquote, .DarkMode .duta thead tr, .DarkMode .duta tfoot tr, .DarkMode .OwO .OwO-body .OwO-bar .OwO-packages .OwO-package-active, .DarkMode .dropblur, .DarkMode darkb-text, .DarkMode .tabs-item.active, .DarkMode .tabs-content, .DarkMode .tabs-wrap, .DarkMode .mobfl.active, .DarkMode code, .DarkMode pre {
+.DarkMode .clicknext>a.next,.DarkMode .clicknext>.next a,.DarkMode hr, .DarkMode .OwO .OwO-body .OwO-items .OwO-item, .DarkMode blockquote, .DarkMode .duta thead tr, .DarkMode .duta tfoot tr, .DarkMode .OwO .OwO-body .OwO-bar .OwO-packages .OwO-package-active, .DarkMode .dropblur, .DarkMode darkb-text, .DarkMode .tabs-item.active, .DarkMode .tabs-content, .DarkMode .tabs-wrap, .DarkMode .mobfl.active, .DarkMode code, .DarkMode pre {
 	background-color: #3e3e3e;
 }
 
