@@ -177,7 +177,6 @@ var CuteenFunc = {
 							$('.next').text('点击查看更多');
 							var $res = $(data).find('.ajaxcard');
 							if (CUTEEN_SETTING.SIDEBAR) {
-								//  $('.cuteup>.theiaStickySidebar>section').append($res.fadeIn(500));
 								$('.cuteup').append($res.fadeIn(500));
 							} else {
 								$('.cuteup').append($res.fadeIn(500));
