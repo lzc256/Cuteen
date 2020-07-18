@@ -493,7 +493,7 @@ function AjaxComment() {
 					if (text != null) str = text[2];
 					iziToast.error({ title: '评论失败', message: str, position: 'topRight' })
 				} else {
-					//评论框复位（清空文本，刷新高度）
+					//评论框复位
 					$('#textarea').val('');
 					$('#textarea').css('height', '');
 					//评论框复位（取消回复）
