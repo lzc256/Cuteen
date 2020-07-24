@@ -1,20 +1,6 @@
 /*All*/
 
-@font-face {
-	font-family: 'Veen';
-	/* project id 1925082 */
-	src: url('//at.alicdn.com/t/font_1925082_tu1v0d47rb.eot');
-	src: url('//at.alicdn.com/t/font_1925082_tu1v0d47rb.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_1925082_tu1v0d47rb.woff2') format('woff2'), url('//at.alicdn.com/t/font_1925082_tu1v0d47rb.woff') format('woff'), url('//at.alicdn.com/t/font_1925082_tu1v0d47rb.ttf') format('truetype'), url('//at.alicdn.com/t/font_1925082_tu1v0d47rb.svg#Veen') format('svg');
-}
 
-.Veen {
-	font-family: "Veen" !important;
-	font-size: inherit;
-	font-style: normal;
-	-webkit-font-smoothing: antialiased;
-	-webkit-text-stroke-width: 0.2px;
-	-moz-osx-font-smoothing: grayscale;
-}
 
 .btn:focus, input:focus, textarea:focus {
 	outline: none;
@@ -104,7 +90,7 @@
 	letter-spacing: 0.4px;
 	transition: .18s ease-out;
 	-webkit-transition: .18s ease-out;
-	font-family: 'CuteenEN', -apple-system, "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif
+	font-family: 'Open Sans', -apple-system, "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif
 }
 
 .btn:hover {

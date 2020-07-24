@@ -1,6 +1,6 @@
 
 .duta {
-    font-family: 'CuteenEN', -apple-system, "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif;
+    font-family: 'Open Sans', -apple-system, "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif;
     line-height: 2.3rem;
     letter-spacing: .3px;
 }
@@ -12,7 +12,7 @@
     visibility: hidden;
 }
 .duta h1,.duta h2,.duta h3,.duta h4,.duta h5,.duta h6 {
-	font-family: 'CuteenEN', -apple-system, 'Noto Serif SC', "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif;
+	font-family: 'Open Sans', -apple-system, 'Noto Serif SC', "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif;
 }
 
 .duta a {
@@ -75,10 +75,10 @@
 }
 
 .duta p, .duta dl, .duta ol, .duta ul, .duta blockquote, .duta pre, .duta table {
-    margin-bottom: 1.4em
+    margin-bottom: 1rem
 }
 
-.duta p:last-child, .duta dl:last-child, .duta ol:last-child, .duta ul:last-child, .duta blockquote:last-child, .duta pre:last-child, .duta table:last-child {
+.duta li p,.duta p:last-child, .duta dl:last-child, .duta ol:last-child, .duta ul:last-child, .duta blockquote:last-child, .duta pre:last-child, .duta table:last-child {
     margin-bottom: 0
 }
 

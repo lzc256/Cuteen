@@ -21,7 +21,7 @@
 	--gd: cubic-bezier(.25, .46, .45, .94);
 	--yj: 4px;
 	--darkmode: #eff2f7;
-	--雅黑: 'CuteenEN', -apple-system, "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif;
+	--雅黑: 'Open Sans', -apple-system, "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif;
 	/*--yy: 7px 7px 15px rgba(55, 84, 170, .15), 0px 7px 20px rgba(255, 255, 255, 1), 0px 0px 4px rgba(255, 255, 255, .2);
 	/* 0 0.5em 1em -0.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02) */
 }
@@ -30,10 +30,6 @@
 	--yy: 0.3125rem 0.3125rem 1.1875rem 0rem #000000, -0.3125rem -0.3125rem 1.125rem #000000
 }
 
-@font-face {
-	font-family: CuteenEN;
-	src: url('../Font/Cuteen_EN.woff'), url('../Font/Cuteen_EN.woff2');
-}
 
 /*reset*/
 
@@ -116,7 +112,7 @@ article, aside, figure, footer, header, hgroup, section {
 }
 
 body, button, input, select, textarea, code, pre {
-	font-family: 'CuteenEN', -apple-system, "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif
+	font-family: 'Open Sans', -apple-system, "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif
 }
 
 code, pre {
@@ -363,7 +359,10 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 /*comment*/
-
+.comment-name .icon{
+	vertical-align: sub;
+    margin-left: 5px;
+}
 .comment-body {
 	border-bottom: 1px solid rgba(0, 0, 0, .05);
 }
@@ -565,10 +564,22 @@ html::-webkit-scrollbar-thumb:hover {
 	border-top-left-radius: var(--yj);
 	border-top-right-radius: var(--yj);
 }
-
+.banner::after {
+	content: '';
+	width: 100%;
+	height: 40%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: linear-gradient(to top, var(--bai), transparent);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00ffffff, endColorstr=#ffffff, GradientType=0);
+}
 .datou {
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);
+	border: rgba(255,255,255,.4) 4px solid;
+	width: 68px;
+	height: 68px;
 }
 
 /*cardstyle*/
@@ -951,7 +962,7 @@ html::-webkit-scrollbar-thumb:hover {
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	background: linear-gradient(to top, var(--bai), transparent);
+	background: linear-gradient(to top, #F6F6F6, transparent);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00ffffff, endColorstr=#ffffff, GradientType=0);
 }
 
@@ -1848,7 +1859,17 @@ pre.hljs-codeblock:before {
 	margin-left: 5px;
 	display: block;
 }
+pre.hljs-codeblock.hljs-break-line .hljs-control-toggle-break-line:before {
+	content: "\5173\95ed\6298\884c";
+}
 
+.hljs-control-toggle-break-line:before {
+	content: "\5f00\542f\6298\884c";
+}
+pre.hljs-codeblock.hljs-break-line .hljs-ln-code {
+	line-break: anywhere;
+	white-space: break-spaces;
+}
 pre.hljs-codeblock {
 	overflow: visible;
 	position: relative;

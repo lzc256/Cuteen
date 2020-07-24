@@ -14,13 +14,13 @@ var CuteenFunc = {
 	},
 	QiPao: function () {
 		if (CUTEEN_SETTING.QIPAO) {
-		$('#hero').circleMagic({
-			radius: 10,
-			density: .2,
-			color: 'rgba(255,255,255,.4)',
-			clearOffset: 0.99
-		});
-	}
+			$('#hero').circleMagic({
+				radius: 10,
+				density: .2,
+				color: 'rgba(255,255,255,.4)',
+				clearOffset: 0.99
+			});
+		}
 	},
 	owo: function () {
 		if ($(".OwO666").length > 0) {
@@ -356,6 +356,9 @@ var CuteenFunc = {
 			$(block).attr("hljs-codeblock-inner", "");
 			let copyBtnID = "copy_btn_" + CuteenFunc.randomString();
 			$(block).parent().append(`<div class="hljs-control hljs-title">
+			<div class="hljs-control-btn hljs-control-toggle-break-line">
+						<i class="fa fa-align-left"></i>
+					</div>
 					<div class="hljs-control-btn hljs-control-copy" id=` + copyBtnID + `>
 						<i class="fa fa-clipboard"></i>
 					</div>
@@ -398,7 +401,10 @@ var CuteenFunc = {
 		});
 	},
 	CodeToolBar: function () {
-
+		$(document).on("click", ".hljs-control-toggle-break-line", function () {
+			let block = $(this).parent().parent();
+			block.toggleClass("hljs-break-line");
+		});
 	},
 	FixSidebarHeight: function () {
 		var g = $('#qjcbl').outerHeight(true);
@@ -424,7 +430,7 @@ var CuteenFunc = {
 Cuteen = {
 	init: function () {
 		CuteenFunc.SearchModel(); CuteenFunc.CodeToolBar();
-		CuteenFunc.owo(); CuteenFunc.FixSomeStyle();CuteenFunc.QiPao();
+		CuteenFunc.owo(); CuteenFunc.FixSomeStyle(); CuteenFunc.QiPao();
 		CuteenFunc.Toc(); CuteenFunc.NoCopy(); CuteenFunc.NavBgFix();
 		CuteenFunc.Acc(); CuteenFunc.Tab(); CuteenFunc.sidebar();
 		CuteenFunc.DarkModeChecked(); CuteenFunc.FixSidebarHeight();
