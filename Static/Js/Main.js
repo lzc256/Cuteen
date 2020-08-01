@@ -166,22 +166,19 @@ var CuteenFunc = {
 	AjaxNext: function () {
 		if (CUTEEN_SETTING.AJAX_PAGE || CUTEEN_SETTING.IS_MOBILE) {
 			$('.next:not(.shangyiye):not(.xiayiye)').click(function () {
-				$('.next').text('正在努力加载');
 				var href = $('.next').attr('href');
 				if (href != undefined) {
 					$.ajax({
 						url: href,
 						type: 'get',
+						beforeSend:function(){
+							$(".next").hide();
+						 },
 						error: function () { },
 						success: function (data) {
-							$('.next').text('点击查看更多');
+							$('.next').show().text('点击查看更多');
 							var $res = $(data).find('.ajaxcard');
-							if (CUTEEN_SETTING.SIDEBAR) {
-								$('.cuteup').append($res.fadeIn(500));
-							} else {
-								$('.cuteup').append($res.fadeIn(500));
-							}
-
+							$('.cuteup>section').append($res.fadeIn(500));
 							var newhref = $(data).find('.next').attr('href');
 							if (newhref != undefined) {
 								$('.next').attr('href', newhref);
@@ -253,7 +250,7 @@ var CuteenFunc = {
 		}
 	},
 	SwitchDarkMode: function () {
-		$('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"><svg class="icon yueliang" aria-hidden="true"><use xlink:href="#icon-yueliang"></use></svg><svg class="icon taiyang" aria-hidden="true"><use xlink:href="#icon-taiyang1-copy-copy"></use></svg></div></div>').appendTo($("body"))
+		$('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"><svg class="icon yueliang" aria-hidden="true"><use xlink:href="#icon-moon_"></use></svg><svg class="icon taiyang" aria-hidden="true"><use xlink:href="#icon-sun1"></use></svg></div></div>').appendTo($("body"))
 		$(".DarkMode").length > 0 ? ($('.yueliang').css('display', 'block'), $('.taiyang').css('display', 'none')) : ($('.taiyang').css('display', 'block'), $('.yueliang').css('display', 'none')), setTimeout(function () {
 			var DarkMode = document.cookie.replace(/(?:(?:^|.*;\s*)DarkMode\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
 			if (DarkMode == '0') {
@@ -429,7 +426,7 @@ var CuteenFunc = {
 
 Cuteen = {
 	init: function () {
-		CuteenFunc.SearchModel(); CuteenFunc.CodeToolBar();
+		CuteenFunc.SearchModel();
 		CuteenFunc.owo(); CuteenFunc.FixSomeStyle(); CuteenFunc.QiPao();
 		CuteenFunc.Toc(); CuteenFunc.NoCopy(); CuteenFunc.NavBgFix();
 		CuteenFunc.Acc(); CuteenFunc.Tab(); CuteenFunc.sidebar();
@@ -446,7 +443,7 @@ Cuteen = {
 };
 
 $(document).ready(function () {
-	Cuteen.init(); Cuteen.loading(); CuteenFunc.TopPost();
+	Cuteen.init(); Cuteen.loading(); CuteenFunc.TopPost(); CuteenFunc.CodeToolBar();
 })
 
 function before_pjax() {
@@ -456,9 +453,9 @@ function before_pjax() {
 function after_pjax() {
 	Cuteen.loading();
 	CuteenFunc.TopPost();
+	CuteenFunc.CodeToolBar();
 }
 function end_pjax() {
-
 	Cuteen.init();
 	AjaxComment();
 

@@ -1,7 +1,5 @@
 /*All*/
 
-
-
 .btn:focus, input:focus, textarea:focus {
 	outline: none;
 }
@@ -90,7 +88,7 @@
 	letter-spacing: 0.4px;
 	transition: .18s ease-out;
 	-webkit-transition: .18s ease-out;
-	font-family: 'Open Sans', -apple-system, "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif
+	font-family: 'Montserrat', -apple-system, "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif
 }
 
 .btn:hover {
