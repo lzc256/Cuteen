@@ -1,6 +1,6 @@
 
 .duta {
-    font-family: 'Montserrat', -apple-system, "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif;
+    font-family: 'Mulish', -apple-system, "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif;
     line-height: 2.3rem;
     letter-spacing: .3px;
 }
@@ -12,7 +12,7 @@
     visibility: hidden;
 }
 .duta h1,.duta h2,.duta h3,.duta h4,.duta h5,.duta h6 {
-	font-family: 'Montserrat', -apple-system, 'Noto Serif SC', "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif;
+	font-family: 'Mulish', -apple-system, 'Noto Serif SC', "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif;
 }
 
 .duta a {

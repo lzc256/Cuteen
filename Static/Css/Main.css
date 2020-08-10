@@ -21,7 +21,7 @@
 	--gd: cubic-bezier(.25, .46, .45, .94);
 	--yj: 4px;
 	--darkmode: #eff2f7;
-	--雅黑: 'Montserrat', -apple-system, "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif;
+	--雅黑: 'Mulish', -apple-system, "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif;
 	/*--yy: 7px 7px 15px rgba(55, 84, 170, .15), 0px 7px 20px rgba(255, 255, 255, 1), 0px 0px 4px rgba(255, 255, 255, .2);
 	/* 0 0.5em 1em -0.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02) */
 }
@@ -111,7 +111,7 @@ article, aside, figure, footer, header, hgroup, section {
 }
 
 body, button, input, select, textarea, code, pre {
-	font-family: 'Montserrat', -apple-system, "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif
+	font-family: 'Mulish', -apple-system, "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif
 }
 
 code, pre {
@@ -187,7 +187,9 @@ body {
 	margin-right: 1.5px;
 	vertical-align: bottom;
 }
-
+.pt5{
+	padding-top: 4.5rem;
+}
 /*all*/
 
 html::-webkit-scrollbar-track-piece {
@@ -289,7 +291,7 @@ html::-webkit-scrollbar-thumb:hover {
 	display: inline-block;
 	background: var(--bai);
 	border-radius: 100px;
-	border: 1px solid #cad1db;
+	/* border: 1px solid #cad1db; */
 	padding: 10px 35px;
 	font-size: 15px;
 	font-weight: 700;
@@ -574,9 +576,10 @@ html::-webkit-scrollbar-thumb:hover {
 	bottom: 0;
 	left: 0;
 	background: linear-gradient(to top, var(--bai), transparent);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00ffffff, endColorstr=#ffffff, GradientType=0);
 }
-
+.DarkMode .banner::after{
+	background: linear-gradient(to top, #1F1B24, transparent);
+}
 .datou {
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);
@@ -794,7 +797,6 @@ html::-webkit-scrollbar-thumb:hover {
 
 .nav {
 	z-index: 10;
-	box-shadow: 0 8px 16px 0 rgba(28, 31, 33, .1);
 }
 
 .nav.haveimg.nobg {
@@ -1109,6 +1111,8 @@ html::-webkit-scrollbar-thumb:hover {
 	margin-left: 24px;
 	max-width: 200px;
 }
+
+
 
 .CTPlayer-list .CTPlayer-list-author {
 	max-width: 107px;
@@ -1639,7 +1643,6 @@ h2:focus, h3:focus, h4:focus, h5:focus {
 	-webkit-overflow-scrolling: touch;
 	-ms-overflow-style: -ms-autohiding-scrollbar;
 	background: var(--bai);
-	border-right: 0.0625rem solid var(--bai);
 }
 
 #nav, .side-toolbar {
@@ -2108,9 +2111,10 @@ code[hljs-codeblock-inner] {
 	transform: translateY(-5px);
 }
 
-.ajaxcard:hover .card-img {
+.ajaxcard:hover .card-img:not(.p2) {
 	transform: scale(1.05) rotate(1deg);
 }
+
 
 .ajaxcard:hover .mybox {
 	box-shadow: 0 34px 20px -24px rgba(136, 161, 206, 0.3);
@@ -2123,7 +2127,7 @@ bilibili>iframe {
 
 /*dark mode*/
 
-.DarkMode .CTPlayer-control p.CTPlayer-name, .DarkMode h1, .DarkMode h2, .DarkMode h3, .DarkMode h4, .DarkMode h5, .DarkMode h6, .DarkMode strong, .DarkMode table th, .DarkMode html, .DarkMode body, .DarkMode p, .DarkMode ol, .DarkMode ul, .DarkMode li, .DarkMode dl, .DarkMode dt, .DarkMode dd, .DarkMode blockquote, .DarkMode figure, .DarkMode fieldset, .DarkMode legend, .DarkMode textarea, .DarkMode pre, .DarkMode iframe, .DarkMode .h1, .DarkMode .h2, .DarkMode .h3, .DarkMode .h4, .DarkMode .h5, .DarkMode .h6, .DarkMode .bold, .DarkMode .input, .DarkMode a, .DarkMode #MENU::before, .DarkMode .mobile-nav-open .haveimg.nobg i, .DarkMode .mobile-nav-open .haveimg.nobg .sitetitle a, .DarkMode .Footer_content p, .DarkMode .haveimg.hasbg .nav-content li a, .DarkMode .card-title, .DarkMode .card-des, .DarkMode .card-info>.info *, .DarkMode .wznydbt, .DarkMode .All_Pagination li a, .DarkMode .tabs-wrap label, .DarkMode .top-mask .cs2-color, .DarkMode .top-mask .cs2-color * {
+.DarkMode .CTPlayer-list .CTPlayer-list-index,.DarkMode .CTPlayer-control p.CTPlayer-name, .DarkMode h1, .DarkMode h2, .DarkMode h3, .DarkMode h4, .DarkMode h5, .DarkMode h6, .DarkMode strong, .DarkMode table th, .DarkMode html, .DarkMode body, .DarkMode p, .DarkMode ol, .DarkMode ul, .DarkMode li, .DarkMode dl, .DarkMode dt, .DarkMode dd, .DarkMode blockquote, .DarkMode figure, .DarkMode fieldset, .DarkMode legend, .DarkMode textarea, .DarkMode pre, .DarkMode iframe, .DarkMode .h1, .DarkMode .h2, .DarkMode .h3, .DarkMode .h4, .DarkMode .h5, .DarkMode .h6, .DarkMode .bold, .DarkMode .input:not(#searchNameAccept), .DarkMode a, .DarkMode #MENU::before, .DarkMode .mobile-nav-open .haveimg.nobg i, .DarkMode .mobile-nav-open .haveimg.nobg .sitetitle a, .DarkMode .Footer_content p, .DarkMode .haveimg.hasbg .nav-content li a, .DarkMode .card-title, .DarkMode .card-des, .DarkMode .card-info>.info *, .DarkMode .wznydbt, .DarkMode .All_Pagination li a, .DarkMode .tabs-wrap label, .DarkMode .top-mask .cs2-color, .DarkMode .top-mask .cs2-color * {
 	color: rgba(255, 255, 255, 0.8);
 }
 
@@ -2135,11 +2139,11 @@ bilibili>iframe {
 	color: #3e3e3e;
 }
 
-.DarkMode .Link_Box li, .DarkMode body, .DarkMode .banquan, .DarkMode hr, .DarkMode textarea, .DarkMode .All_Pagination li a, .DarkMode .input, .DarkMode .tabs-wrap label, .DarkMode .is-active-link::before, .DarkMode #nav, .DarkMode .duta tbody tr {
+.DarkMode .CTPlayer-list,.DarkMode .CTPlayer-list li.CTPlayer-curMusic,.DarkMode .Link_Box li, .DarkMode body, .DarkMode .banquan, .DarkMode hr, .DarkMode textarea, .DarkMode .All_Pagination li a, .DarkMode .input, .DarkMode .tabs-wrap label, .DarkMode .is-active-link::before, .DarkMode #nav, .DarkMode .duta tbody tr {
 	background-color: #121212;
 }
 
-.DarkMode .clicknext>a.next, .DarkMode .clicknext>.next a, .DarkMode hr, .DarkMode .OwO .OwO-body .OwO-items .OwO-item, .DarkMode blockquote, .DarkMode .duta thead tr, .DarkMode .duta tfoot tr, .DarkMode .OwO .OwO-body .OwO-bar .OwO-packages .OwO-package-active, .DarkMode .dropblur, .DarkMode darkb-text, .DarkMode .tabs-item.active, .DarkMode .tabs-content, .DarkMode .tabs-wrap, .DarkMode .mobfl.active, .DarkMode code, .DarkMode pre {
+.DarkMode .CTPlayer-list::-webkit-scrollbar-thumb,.DarkMode .CTPlayer-list li:hover,.DarkMode .clicknext>a.next, .DarkMode .clicknext>.next a, .DarkMode hr, .DarkMode .OwO .OwO-body .OwO-items .OwO-item, .DarkMode blockquote, .DarkMode .duta thead tr, .DarkMode .duta tfoot tr, .DarkMode .OwO .OwO-body .OwO-bar .OwO-packages .OwO-package-active, .DarkMode .dropblur, .DarkMode darkb-text, .DarkMode .tabs-item.active, .DarkMode .tabs-content, .DarkMode .tabs-wrap, .DarkMode .mobfl.active, .DarkMode code, .DarkMode pre {
 	background-color: #3e3e3e;
 }
 
