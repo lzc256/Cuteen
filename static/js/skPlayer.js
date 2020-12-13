@@ -87,7 +87,7 @@ var skPlayer = /*#__PURE__*/function () {
 
         var defaultOption = {
             element: document.getElementById('musicPop'),
-            mobileElement:document.getElementById('musicMobileBox'),
+            mobileElement: document.getElementById('musicMobileBox'),
             autoplay: false,
             //true/false
             mode: 'listloop',
@@ -112,6 +112,7 @@ var skPlayer = /*#__PURE__*/function () {
 
         this.type = this.option.music.type;
         this.music = this.option.music.source;
+        this.media = this.option.music.media;
         this.isMobile = /mobile/i.test(window.navigator.userAgent);
         this.toggle = this.toggle.bind(this);
         this.toggleList = this.toggleList.bind(this);
@@ -126,23 +127,20 @@ var skPlayer = /*#__PURE__*/function () {
             this.bind();
         } else if (this.type === 'cloud') {
             this.root.innerHTML = '<p class="music-tip-loading">LOADING</p>';
-            Util.ajax({
-                url: baseUrl + '?type=collect&media=' + this.media + "&id=" + this.music,
-                beforeSend: function beforeSend() {
-                    console.log('SKPlayer正在努力的拉取歌单 ...');
-                },
-                success: function success(data) {
+
+            axios.get(baseUrl + '?type=collect&media=' + this.media + "&id=" + this.music)
+            .then(function (response) {
+                _this.music = response.data;
                     console.log('歌单拉取成功！');
-                    _this.music = JSON.parse(data);
                     _this.root.innerHTML = _this.template();
 
                     _this.init();
 
                     _this.bind();
-                },
-                fail: function fail(status) {
-                    console.error('歌单拉取失败！ 错误码：' + status);
-                }
+              
+            })
+            .catch(function (error) {
+                console.error('歌单拉取失败！ 错误码：' + error);
             });
         }
     }
@@ -305,7 +303,7 @@ var skPlayer = /*#__PURE__*/function () {
 
             this.dom.modebutton.addEventListener('click', this.switchMode);
             this.dom.musiclist.addEventListener('click', function (e) {
-               Cuteen.stopPropagation();
+                Cuteen.stopPropagation();
                 var target, index, curIndex;
                 if (e.target.tagName.toUpperCase() === 'LI') {
                     target = e.target;
@@ -453,7 +451,7 @@ var skPlayer = /*#__PURE__*/function () {
             Cuteen.stopPropagation();
             if (this.audio.paused) {
                 this.audio.play();
-                document.getElementById('play-btn-icon').setAttribute("xlink:href","#pause");
+                document.getElementById('play-btn-icon').setAttribute("xlink:href", "#pause");
                 document.getElementById('musicSvg').classList.add('on');
                 this.dom.cover.classList.add('music-pause');
             }
@@ -464,7 +462,7 @@ var skPlayer = /*#__PURE__*/function () {
             Cuteen.stopPropagation();
             if (!this.audio.paused) {
                 this.audio.pause();
-                document.getElementById('play-btn-icon').setAttribute("xlink:href","#bofang");
+                document.getElementById('play-btn-icon').setAttribute("xlink:href", "#bofang");
                 this.dom.cover.classList.remove('music-pause');
                 document.getElementById('musicSvg').classList.remove('on');
             }

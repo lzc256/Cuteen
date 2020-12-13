@@ -1,5 +1,5 @@
 "use strict";
-
+console.log(' %c Theme Cuteen v4.1(20201213) %c https://blog.zwying.com/ ', 'color: #fff; background: #2dce89; padding:5px;', 'background: #1c2b36; padding:5px;');
 //----------------------------------------添加、删除Class---------------------------------------
 function hasClass(obj, cls) {
     return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
@@ -79,7 +79,6 @@ const Cuteen = {
     mobileMusicToggle: function () {
         const musicPop = document.getElementById('mobileMusic');
         const box = document.getElementById('musicMobileBox');
-        console.log(musicPop)
         if (musicPop !== null){
             musicPop.onclick = function () {
                 if (box.className === 'on') {
@@ -234,7 +233,7 @@ const Cuteen = {
                         const newIdNumber = response.data.match(/id=\"?comment-\d+/g).join().match(/\d+/g).sort(
                             function (a, b) {
                                 return a - b;
-                            }
+                            } 
                         ).pop();
                         const newId = 'comment-'.concat(newIdNumber);
                         const oldList = document.getElementsByClassName('comment-list');
@@ -372,7 +371,9 @@ const Cuteen = {
                     } else {
                         const list = convert.getElementsByClassName('article');//获取新列表
                         const newHrefPosition = convert.getElementsByClassName('next')[0];
-                        const newhref = newHrefPosition.getAttribute('href');
+                        if (newHrefPosition!==undefined) {
+                            var newhref = newHrefPosition.getAttribute('href');
+                        }
                         let b = '';
                         for (let v of list) {
                             b += v.outerHTML;
@@ -388,11 +389,11 @@ const Cuteen = {
                         } else {
                             insertPosition.insertAdjacentHTML('beforeend', b);//插入新列表列表模式
                         }
-                        link.insertAdjacentHTML('beforeend', '<button id="NextButton" onclick="Cuteen.ajaxNext()" class="btn btn-primary col-3 mx-auto rounded-pill">点击加载更多</button>')
-                        link.setAttribute('href', newhref);
-                        let lazy = new LazyLoad({
-                            // Your custom settings go here
-                        });
+                        if (newHrefPosition!==undefined) {
+                            link.insertAdjacentHTML('beforeend', '<button id="NextButton" onclick="Cuteen.ajaxNext()" class="btn btn-primary col-3 mx-auto rounded-pill">点击加载更多</button>')
+                            link.setAttribute('href', newhref);
+                        }
+                        let lazy = new LazyLoad();
                         lazy.update();
                         return false;
                     }
@@ -653,7 +654,6 @@ const Cuteen = {
     },
     themeColorCheck: function () {
         const themeColor = Cookies.get('themeColor');
-        console.log(themeColor)
         if (themeColor === 'primary') {
             this.themeColor('primary');
             document.querySelector('.btn-check[value="primary"]').setAttribute('checked', 'checked');

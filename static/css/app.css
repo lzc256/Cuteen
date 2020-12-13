@@ -1,9 +1,13 @@
 :root{
     --radius:6px;
+    --bs-font-sans-serif:"Roman-55",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }
-
+@font-face {
+	font-family: 'Roman-55';
+	src: url('../font/NeueHaasGrotTextRound-55Roman.woff2'); 
+   }
 body{
-    font-family: "Mulish",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"
+    font-family: var(--bs-font-sans-serif);
 }
 ::-webkit-scrollbar {
     width: 6px;
@@ -178,6 +182,7 @@ a {
     opacity: 0;
     visibility: hidden;
     transition: .25s;
+    max-width: 12.5rem;
 }
 
 #musicApp:hover #musicPop,#themePlane:hover #themeColor{
@@ -1618,6 +1623,10 @@ blur-text, blur-text * {
     text-shadow: rgba(0, 0, 0, 0.701961) 0px 0px 10px;
     color: transparent;
 }
+.dark-mode blur-text,.dark-mode blur-text * {
+    text-shadow: rgba(255, 255, 255, 0.702) 0px 0px 10px;
+    color: transparent;
+}
 rainbow-text, rainbow-text * {
     background-image: linear-gradient( to left, orangered, orange, gold, lightgreen, cyan, dodgerblue, mediumpurple, hotpink, orangered);
     background-size: 110vw;
@@ -2023,9 +2032,6 @@ ul.timeline  li:before {
     }
 }
 @media (max-width: 576px) {
-    .article.have-img .article-img ,.article.have-img .article-ctx {
-        width: unset;
-    }
 
     .dark-mode .article:not(.card-style){
         background-color:#1f1b24;
@@ -2174,6 +2180,9 @@ ul.timeline  li:before {
 }
 @media (max-width: 576px) {
     .article.have-img .article-img ,.article.have-img.no-bg-img .article-img{
+        clip-path: unset;
+        display: flex;
+        align-items: center;
         margin: 0.5rem 0 0.5rem 0.5rem;
     }
     .article.have-img.flex-row-reverse .article-img,.article.have-img.no-bg-img.flex-row-reverse .article-img {
@@ -2515,12 +2524,16 @@ ul.timeline  li:before {
 .dark-mode .bg-blur {
     background-color: rgba(31, 27, 36, 0.8) !important;
 }
-.dark-mode .aside-sort a,.dark-mode .aside-pages a,
+.dark-mode .reply2view{
+   background:  #363636 repeating-linear-gradient(-45deg, #000, #000 1.125rem, transparent 1.125rem, transparent 2.25rem);
+}
+.dark-mode .aside-sort a,.dark-mode .aside-pages a,.dark-mode .archives-title,
 .dark-mode .modal-content, .dark-mode .form-control,.dark-mode #mobileAside,
 .dark-mode #TOC-btn, .dark-mode #TOC-btn svg, .dark-mode .right-btn-icon svg, .dark-mode .comment-input, .dark-mode .nav-tabs .nav-item.show .nav-link, .dark-mode .nav-tabs .nav-link.active, .dark-mode .navbar-nav svg, .dark-mode #footer p, .dark-mode .navbar-light .navbar-brand, .dark-mode .navbar-light .navbar-nav .nav-link:focus, .dark-mode .navbar-light .navbar-nav .nav-link:hover {
     color: rgba(255, 255, 255, 0.8);
 }
-.dark-mode #musicPop,.dark-mode #musicMobileBox,
+.dark-mode .card,
+.dark-mode #musicPop,.dark-mode #musicMobileBox,.dark-mode .accordion .card-body,
 .dark-mode .article.no-img,
 .dark-mode .article.no-bg-img,
 .dark-mode .article.no-bg-img .article-info,
@@ -2531,13 +2544,14 @@ ul.timeline  li:before {
 .dark-mode .sidebar-box, .dark-mode .TOC-ctx, .dark-mode #footer, .dark-mode .mobile-right-btn, .dark-mode .post-ctx, .dark-mode .post-comment, .dark-mode .OwO .OwO-body, .dark-mode #TOC-btn {
     background-color: #1f1b24 !important;
 }
-.dark-mode .OwO .OwO-body .OwO-bar .OwO-packages li:hover, .dark-mode .OwO .OwO-body .OwO-bar .OwO-packages .OwO-package-active, .dark-mode .OwO .OwO-body .OwO-items .OwO-item, .dark-mode .nav-tabs .nav-item.show .nav-link, .dark-mode .nav-tabs .nav-link.active, .dark-mode #post thead tr, .dark-mode #post tfoot tr {
-    background-color: #3e3e3e;
+.dark-mode .progress,
+.dark-mode .accordion>.card,.dark-mode .OwO .OwO-body .OwO-bar .OwO-packages li:hover, .dark-mode .OwO .OwO-body .OwO-bar .OwO-packages .OwO-package-active, .dark-mode .OwO .OwO-body .OwO-items .OwO-item, .dark-mode .nav-tabs .nav-item.show .nav-link, .dark-mode .nav-tabs .nav-link.active, .dark-mode #post thead tr, .dark-mode #post tfoot tr {
+    background-color: #3e3e3e !important;
 }
 .dark-mode hr {
     background-color: #909090;
 }
-.dark-mode .tabs, .dark-mode #post th:not(.hljs-ln-line), .dark-mode #post td:not(.hljs-ln-line), .dark-mode .comment-input-warp {
+ .dark-mode .tabs, .dark-mode #post th:not(.hljs-ln-line), .dark-mode #post td:not(.hljs-ln-line), .dark-mode .comment-input-warp {
     border: 1px solid #909090;
 }
 .dark-mode #musicPop:before{
